@@ -7,11 +7,15 @@ public class Runner extends JPanel implements ActionListener, KeyListener, Mouse
     private static final long serialVersionUID = 1L;
 
     // ==FIELDS==
-    private final Font font = new Font("ComicSans", Font.PLAIN, 20);
+    private final Font font = new Font("ComicSans", Font.PLAIN, 18);
     ArrayList<Student> students;
-
+    
     public Runner() {
-        students = new ArrayList<>();
+        students = new ArrayList<Student>();
+        /* Test Student
+         * Student s = new Student(50, 50, "Bob Ross", 0);
+         * students.add(s);
+         */
     }
 
     //Paints everything
@@ -19,7 +23,7 @@ public class Runner extends JPanel implements ActionListener, KeyListener, Mouse
         super.paintComponent(g);
         g.setColor(Color.orange);
         g.fillRect((int) (getWidth() * 7.5 / 9), 0, (getWidth()), getHeight());
-        g.setColor(Color.lightGray);
+        g.setColor(Color.darkGray);
         g.setFont(font);
         for (int x = 0; x < students.size(); x++)
             students.get(x).draw(g);
@@ -71,7 +75,6 @@ public class Runner extends JPanel implements ActionListener, KeyListener, Mouse
 
     @Override
     public void actionPerformed(ActionEvent arg0) {
-
+    	
     }
-
 }
