@@ -56,6 +56,19 @@ public class Student {
     }
     
     public void draw(Graphics g) {
-    	g.drawString(getName(), x, y);
+        if(status == 0)
+            g.setColor(Color.green);
+        else if(status == 1)
+            g.setColor(Color.red);
+        else if(status == 2)
+            g.setColor(Color.orange);
+        else
+            g.setColor(Color.gray);
+
+        int width = 500;
+        int height = 50;
+        g.drawRect(x, y, width, height);
+        g.setColor(Color.BLACK);
+        g.drawString(getName() + "  :  " + getStatus(), x + 50, y + height / 2 + 5);
     }
 }

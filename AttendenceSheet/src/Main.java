@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class Main {
-    public static final int DRAWING_WIDTH = 1000; //Width of Window
+    public static final int DRAWING_WIDTH = 700; //Width of Window
     public static final int DRAWING_HEIGHT = 750; //Height of Window
     private static final Color background = new Color(255, 255, 255);
     public static ArrayList<String> arr = new ArrayList<>();
@@ -39,7 +39,7 @@ public class Main {
         //Window
         JFrame f = new JFrame("Chart");
         f.setBounds(150, 0, DRAWING_WIDTH, DRAWING_HEIGHT);
-        f.setExtendedState(f.getExtendedState() | JFrame.MAXIMIZED_BOTH);
+//        f.setExtendedState(f.getExtendedState() | JFrame.MAXIMIZED_BOTH);
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 

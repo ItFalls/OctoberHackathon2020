@@ -4,6 +4,7 @@ import java.awt.event.*;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Runner extends JPanel implements ActionListener, KeyListener, MouseListener {
     private static final long serialVersionUID = 1L;
@@ -126,7 +127,26 @@ public class Runner extends JPanel implements ActionListener, KeyListener, Mouse
 
     @Override
     public void keyPressed(KeyEvent arg) {
-    	
+        if (arg.getKeyCode() == KeyEvent.VK_SPACE) {
+
+            Scanner sc = new Scanner(System.in);
+
+
+            if (students.size() < 14) {
+                System.out.print("Enter Student's Name: ");
+                String name = sc.nextLine();
+                students.add(new Student(50, 50 + students.size() * 60, name, 0));
+            } else if (students.size() < 28) {
+                students.add(new Student(560, 50 + students.size() % 14 * 60, "Student", 1));
+            } else if (students.size() < 42) {
+                students.add(new Student(1070, 50 + students.size() % 14 * 60, "Student", 2));
+            }
+
+            if (arg.getKeyCode() == KeyEvent.VK_BACK_SPACE)
+                if (students.size() > 0)
+                    students.remove(students.size() - 1);
+            repaint();
+        }
     }
 
     @Override
