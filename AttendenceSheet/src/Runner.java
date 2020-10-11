@@ -105,8 +105,12 @@ public class Runner extends JPanel implements ActionListener, KeyListener, Mouse
                 }
         }
 
-        if (arg.getKeyCode() == KeyEvent.VK_0) {
-            //order the students alphabetically
+        if (arg.getKeyCode() == KeyEvent.VK_A) {
+            students.sort((Student s1, Student s2)->s1.getName().compareToIgnoreCase(s2.getName()));
+        }
+
+        if (arg.getKeyCode() == KeyEvent.VK_G) {
+
         }
 
         if (arg.getKeyCode() == KeyEvent.VK_S) {
