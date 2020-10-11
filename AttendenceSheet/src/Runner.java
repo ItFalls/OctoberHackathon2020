@@ -27,7 +27,7 @@ public class Runner extends JPanel implements ActionListener, KeyListener, Mouse
         String fileName = "links.txt";
         arr = (ArrayList<String>) Files.readAllLines(Paths.get(fileName));
 
-        if(arr.size() == 0) {
+        if (arr.size() == 0) {
             file = new File("links.txt");
             out = new PrintWriter(file);
         }
@@ -94,16 +94,22 @@ public class Runner extends JPanel implements ActionListener, KeyListener, Mouse
     @Override
     public void keyPressed(KeyEvent arg) {
         if (arg.getKeyCode() == KeyEvent.VK_1) {
+            int count = 0;
             for (int x = 0; x < students.size(); x++)
-                if (!students.get(x).getCalled() && !students.get(x).getStatus().equals("Present") && !students.get(x).getStatus().equals("Tardy")) {
-                    Random rand = new Random();
-                    Student calledOn;
-                    do {
-                        calledOn = students.get(rand.nextInt(students.size()));
-                    } while (!calledOn.getStatus().equals("Present") && !calledOn.getStatus().equals("Tardy"));
-                    calledOn.call();
+                if (students.get(x).getStatus().equals("Present") || students.get(x).getStatus().equals("Tardy")) {
+                    count++;
                     break;
                 }
+
+            if (count > 0) {
+                Random rand = new Random();
+                Student calledOn;
+                do {
+                    calledOn = students.get(rand.nextInt(students.size()));
+                } while (!calledOn.getStatus().equals("Present") && !calledOn.getStatus().equals("Tardy"));
+                calledOn.call();
+
+            }
         }
 
         if (arg.getKeyCode() == KeyEvent.VK_A) {
@@ -113,11 +119,11 @@ public class Runner extends JPanel implements ActionListener, KeyListener, Mouse
         if (arg.getKeyCode() == KeyEvent.VK_G) {
             int num = Integer.parseInt(JOptionPane.showInputDialog("How many people per group?"));
             int groups = students.size() / num;
-            Collections.shuffle(students);
             if (num >= students.size() || num <= 0)
                 for (int x = 0; x < students.size(); x++)
                     students.get(x).setGroup(0);
             else {
+                Collections.shuffle(students);
                 for (int x = 0; x < groups; x++) {
                     for (int y = x * num; y < x * num + num; y++) {
                         students.get(y).setGroup(x + 1);
@@ -130,8 +136,8 @@ public class Runner extends JPanel implements ActionListener, KeyListener, Mouse
 
             }
         }
-        
-        if(arg.getKeyCode() == KeyEvent.VK_Z){
+
+        if (arg.getKeyCode() == KeyEvent.VK_Z) {
             Runtime runtime = Runtime.getRuntime();
             for (String link : arr) {
                 String[] s = new String[]{System.getProperty("user.home") + "\\AppData\\Local\\Google\\Chrome\\Application\\chrome.exe", link};
@@ -143,15 +149,15 @@ public class Runner extends JPanel implements ActionListener, KeyListener, Mouse
             }
         }
 
-        if(arg.getKeyCode() == KeyEvent.VK_X) {
-        	String l = JOptionPane.showInputDialog("Enter URL");
+        if (arg.getKeyCode() == KeyEvent.VK_X) {
+            String l = JOptionPane.showInputDialog("Enter URL");
             arr.add(l);
             writeValuesToFile();
         }
 
         if (arg.getKeyCode() == KeyEvent.VK_C) {
             if (students.size() > 0)
-                arr.remove(arr.size()-1);
+                arr.remove(arr.size() - 1);
         }
 
         if (arg.getKeyCode() == KeyEvent.VK_S) {
@@ -186,17 +192,16 @@ public class Runner extends JPanel implements ActionListener, KeyListener, Mouse
         }
         return null;
     }
-    
+
     public void writeValuesToFile() {
         try {
-            out.println(arr.get(arr.size()-1));
+            out.println(arr.get(arr.size() - 1));
             out.close();
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
-    
+
     @Override
     public void keyReleased(KeyEvent arg) {
     }
