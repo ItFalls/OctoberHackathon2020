@@ -10,44 +10,31 @@ public class Main {
 
     //Main Method
     public static void main(String[] args) {
-        //Window
-        JFrame window = new JFrame("Chart");
-        window.setBounds(150, 0, DRAWING_WIDTH, DRAWING_HEIGHT);
-        window.setExtendedState(window.getExtendedState() | JFrame.MAXIMIZED_BOTH);
-        window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-        window.getContentPane().setLayout(new FlowLayout());
-        JTextField textfield1 = new JTextField("Text field 1",10);
-        JTextField textfield2 = new JTextField("Text field 2",10);
-        JTextField textfield3 = new JTextField("Text field 3",10);
-        window.getContentPane().add(textfield1);
-        window.getContentPane().add(textfield2);
-        window.getContentPane().add(textfield3);
-        window.pack();
-        window.setVisible(true);
-
-        //Panel
-        Runner panel = new Runner();
-        panel.setBackground(background);
-        Container c = window.getContentPane();
-        c.add(panel);
-        window.setVisible(true);
-        window.addKeyListener(panel);
-        window.addMouseListener(panel);
-
-
         Runtime runtime = Runtime.getRuntime();
         System.out.print("What is your user folder's name?");
         String username = new Scanner(System.in).nextLine();
-        String[] s = new String[] {"C:\\Users\\" + username + "\\AppData\\Local\\Google\\Chrome\\Application\\chrome.exe", "https://javaconceptoftheday.com/"};
+        String[] s = new String[]{"C:\\Users\\" + username + "\\AppData\\Local\\Google\\Chrome\\Application\\chrome.exe", "https://javaconceptoftheday.com/"};
 
-        try
-        {
+        try {
             runtime.exec(s);
-        }
-        catch (IOException e)
-        {
+        } catch (IOException e) {
             e.printStackTrace();
         }
+
+        //Window
+        JFrame f = new JFrame("Chart");
+        f.setBounds(150, 0, DRAWING_WIDTH, DRAWING_HEIGHT);
+        f.setExtendedState(f.getExtendedState() | JFrame.MAXIMIZED_BOTH);
+        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+
+        //Panel
+        Runner runner = new Runner();
+        runner.setBackground(background);
+        Container c = f.getContentPane();
+        c.add(runner);
+        f.setVisible(true);
+        f.addKeyListener(runner);
+        f.addMouseListener(runner);
     }
 }

@@ -8,6 +8,11 @@ public class Runner extends JPanel implements ActionListener, KeyListener, Mouse
 
     // ==FIELDS==
     private final Font font = new Font("ComicSans", Font.PLAIN, 18);
+    private JButton aButton = new JButton("a");
+    private JButton bButton = new JButton("b");
+    private JButton cButton = new JButton("c");
+
+
     ArrayList<Student> students;
     
     public Runner() {
@@ -25,8 +30,17 @@ public class Runner extends JPanel implements ActionListener, KeyListener, Mouse
         g.fillRect((int) (getWidth() * 7.5 / 9), 0, (getWidth()), getHeight());
         g.setColor(Color.darkGray);
         g.setFont(font);
-        for (int x = 0; x < students.size(); x++)
-            students.get(x).draw(g);
+
+        this.add(aButton);
+        this.add(bButton);
+        this.add(cButton);
+        aButton.setBounds(50 * getWidth() / 800, 9 * getHeight() / 10, 2 * getWidth() / 8, 6 * getHeight() / 80);
+        aButton.setBackground(Color.WHITE);
+        bButton.setBounds(310 * getWidth() / 800, 9 * getHeight() / 10, 2 * getWidth() / 8, 6 * getHeight() / 80);
+        bButton.setBackground(Color.WHITE);
+        cButton.setBounds(570 * getWidth() / 800, 9 * getHeight() / 10, 2 * getWidth() / 8, 6 * getHeight() / 80);
+        cButton.setBackground(Color.WHITE);
+
         repaint();
     }
 
