@@ -44,7 +44,7 @@ public class Runner extends JPanel implements ActionListener, KeyListener, Mouse
                 students.get(i).setY(50 + i * 60);
             } else if (i < 28) {
                 students.get(i).setX(560);
-                students.get(i).setY(50 +i % 14 * 60);
+                students.get(i).setY(50 + i % 14 * 60);
             } else if (i < 42) {
                 students.get(i).setX(1070);
                 students.get(i).setY(50 + i % 14 * 60);
@@ -106,11 +106,28 @@ public class Runner extends JPanel implements ActionListener, KeyListener, Mouse
         }
 
         if (arg.getKeyCode() == KeyEvent.VK_A) {
-            students.sort((Student s1, Student s2)->s1.getName().compareToIgnoreCase(s2.getName()));
+            students.sort((Student s1, Student s2) -> s1.getName().compareToIgnoreCase(s2.getName()));
         }
 
         if (arg.getKeyCode() == KeyEvent.VK_G) {
+            int num = Integer.parseInt(JOptionPane.showInputDialog("How many people per group?"));
+            int groups = students.size() / num;
+            Collections.shuffle(students);
+            if (num >= students.size() || num <= 0)
+                for (int x = 0; x < students.size(); x++)
+                    students.get(x).setGroup(0);
+            else {
+                for (int x = 0; x < groups; x++) {
+                    for (int y = x * num; y < x * num + num; y++) {
+                        students.get(y).setGroup(x + 1);
+                    }
+                }
+                if (students.size() % groups > 0) {
+                    for (int x = students.size() - students.size() % groups; x < students.size(); x++)
+                        students.get(x).setGroup(groups + 1);
+                }
 
+            }
         }
 
         if (arg.getKeyCode() == KeyEvent.VK_S) {
@@ -139,8 +156,8 @@ public class Runner extends JPanel implements ActionListener, KeyListener, Mouse
     }
 
     public Student findStudentByName(String name) {
-        for(Student studentObj : students) {
-            if(studentObj.getName().replaceAll(" ", "").equalsIgnoreCase(name)) {
+        for (Student studentObj : students) {
+            if (studentObj.getName().replaceAll(" ", "").equalsIgnoreCase(name)) {
                 return studentObj;
             }
         }

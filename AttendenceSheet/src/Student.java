@@ -6,6 +6,7 @@ public class Student {
     private int y = 0;
     private String name = "";
     private boolean called = false;
+    private int group = 0;
     
     /*
     0 - present
@@ -23,6 +24,14 @@ public class Student {
         this.name = name;
         this.status = status;
         called = false;
+    }
+
+    public int getGroup() {
+        return group;
+    }
+
+    public void setGroup(int g) {
+        group = g;
     }
 
     public int getX() {
@@ -93,7 +102,10 @@ public class Student {
         int height = 50;
         g.drawRect(x, y, width, height);
         g.setColor(Color.BLACK);
-        g.drawString(getName() + "  :  " + getStatus(), x + 50, y + height / 2 + 5);
+        if(group > 0)
+            g.drawString(getName() + "  :  " + getStatus() + "  :  Group " +  group, x + 50, y + height / 2 + 5);
+        else
+            g.drawString(getName() + "  :  " + getStatus(), x + 50, y + height / 2 + 5);
     }
 
     public boolean isIntersecting(int x, int y) {
