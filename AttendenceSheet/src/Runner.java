@@ -1,6 +1,8 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 
 public class Runner extends JPanel implements ActionListener, KeyListener, MouseListener {
@@ -8,15 +10,23 @@ public class Runner extends JPanel implements ActionListener, KeyListener, Mouse
 
     // ==FIELDS==
     private final Font font = new Font("ComicSans", Font.PLAIN, 18);
+<<<<<<< Updated upstream
     private JButton addStu = new JButton("Add student");
     private JButton remStu = new JButton("Remove student");
     //private JButton showList = new JButton("Show students");
 
+=======
+    private JButton aButton = new JButton("a");
+    private JButton bButton = new JButton("b");
+    private JButton cButton = new JButton("c");
+    private static java.io.File f = new java.io.File("links.txt");
+    private PrintWriter out = new PrintWriter(f);
+>>>>>>> Stashed changes
 
     ArrayList<Student> students;
     ArrayList<JButton> atts;
     
-    public Runner() {
+    public Runner() throws FileNotFoundException {
         students = new ArrayList<Student>();
         atts = new ArrayList<JButton>();
         
@@ -32,11 +42,10 @@ public class Runner extends JPanel implements ActionListener, KeyListener, Mouse
     //Paints everything
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
-        g.setColor(Color.orange);
-        g.fillRect((int) (getWidth() * 7.5 / 9), 0, (getWidth()), getHeight());
         g.setColor(Color.darkGray);
         g.setFont(font);
 
+<<<<<<< Updated upstream
         this.add(addStu);
         this.add(remStu);
         //this.add(showList);
@@ -59,6 +68,32 @@ public class Runner extends JPanel implements ActionListener, KeyListener, Mouse
         	students.get(i).draw(g);
         }
         
+=======
+        this.setLayout(new GridLayout(3, 1));
+        this.add(new JLabel("Enter Player 1 name:"));
+        JTextField textField = new JTextField();
+        textField.setSize(200, 100);
+        this.add(textField);
+
+        this.add(aButton);
+        this.add(bButton);
+        this.add(cButton);
+        aButton.setBounds(50 * getWidth() / 800, 9 * getHeight() / 10, 2 * getWidth() / 8, 6 * getHeight() / 80);
+        aButton.setBackground(Color.WHITE);
+        bButton.setBounds(310 * getWidth() / 800, 9 * getHeight() / 10, 2 * getWidth() / 8, 6 * getHeight() / 80);
+        bButton.setBackground(Color.WHITE);
+        cButton.setBounds(570 * getWidth() / 800, 9 * getHeight() / 10, 2 * getWidth() / 8, 6 * getHeight() / 80);
+        cButton.setBackground(Color.WHITE);
+
+        aButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e){
+                String str = textField.getText();
+                str.replaceAll(" ", "");
+                out.println(str);
+            }
+        });
+
+>>>>>>> Stashed changes
         repaint();
     }
 
