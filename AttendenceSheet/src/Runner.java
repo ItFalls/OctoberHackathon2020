@@ -96,9 +96,7 @@ public class Runner extends JPanel implements ActionListener, KeyListener, Mouse
         }
 
         if (arg.getKeyCode() == KeyEvent.VK_SPACE) {
-
             Scanner sc = new Scanner(System.in);
-
 
             if (students.size() < 14) {
                 System.out.print("Enter Student's Name: ");
@@ -109,11 +107,11 @@ public class Runner extends JPanel implements ActionListener, KeyListener, Mouse
             } else if (students.size() < 42) {
                 students.add(new Student(1070, 50 + students.size() % 14 * 60, "Student", 2));
             }
-
+        }
             if (arg.getKeyCode() == KeyEvent.VK_BACK_SPACE)
                 if (students.size() > 0)
                     students.remove(students.size() - 1);
-        }
+
         repaint();
     }
 
