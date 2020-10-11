@@ -18,9 +18,7 @@ public class Student {
 
     private int status = 0;
 
-    public Student(int x, int y, String name, int status) {
-        this.x = x;
-        this.y = y;
+    public Student(String name, int status) {
         this.name = name;
         this.status = status;
         called = false;

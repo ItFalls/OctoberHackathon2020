@@ -24,6 +24,22 @@ public class Runner extends JPanel implements ActionListener, KeyListener, Mouse
     public Runner() throws IOException {
         students = new ArrayList<Student>();
 
+        students.add(new Student("John", 0));
+        students.add(new Student("Mike", 0));
+        students.add(new Student("Ella", 0));
+        students.add(new Student("Bob", 0));
+        students.add(new Student("Tim", 0));
+        students.add(new Student("Emma", 0));
+        students.add(new Student("Jerry", 0));
+        students.add(new Student("Sam", 0));
+        students.add(new Student("Joe", 0));
+        students.add(new Student("Liam", 0));
+        students.add(new Student("Olivia", 0));
+        students.add(new Student("Noah", 0));
+        students.add(new Student("Ava", 0));
+        students.add(new Student("Oliver", 0));
+
+
         String fileName = "links.txt";
         arr = (ArrayList<String>) Files.readAllLines(Paths.get(fileName));
 
@@ -168,11 +184,11 @@ public class Runner extends JPanel implements ActionListener, KeyListener, Mouse
             String name = JOptionPane.showInputDialog("Enter student name");
 
             if (students.size() < 12) {
-                students.add(new Student(15, 20 + students.size() * 65, name, 0));
+                students.add(new Student(name, 0));
             } else if (students.size() < 24) {
-                students.add(new Student(525, 20 + students.size() % 12 * 65, name, 0));
+                students.add(new Student(name, 0));
             } else if (students.size() < 36) {
-                students.add(new Student(1035, 20 + students.size() % 12 * 65, name, 0));
+                students.add(new Student(name, 0));
             }
         }
         if (arg.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
