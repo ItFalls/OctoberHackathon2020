@@ -3,6 +3,7 @@ import java.awt.*;
 import java.awt.event.*;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -37,8 +38,20 @@ public class Runner extends JPanel implements ActionListener, KeyListener, Mouse
         g.setFont(font);
 
         for (int i = 0; i < students.size(); i++) {
+            if (i < 14) {
+                students.get(i).setX(50);
+                students.get(i).setY(50 + i * 60);
+            } else if (i < 28) {
+                students.get(i).setX(560);
+                students.get(i).setY(50 +i % 14 * 60);
+            } else if (i < 42) {
+                students.get(i).setX(1070);
+                students.get(i).setY(50 + i % 14 * 60);
+            }
+
             students.get(i).draw(g);
         }
+
     }
 
 
@@ -95,6 +108,10 @@ public class Runner extends JPanel implements ActionListener, KeyListener, Mouse
             //order the students alphabetically
         }
 
+        if (arg.getKeyCode() == KeyEvent.VK_S) {
+            Collections.shuffle(students);
+        }
+
         if (arg.getKeyCode() == KeyEvent.VK_SPACE) {
             Scanner sc = new Scanner(System.in);
 
@@ -108,9 +125,9 @@ public class Runner extends JPanel implements ActionListener, KeyListener, Mouse
                 students.add(new Student(1070, 50 + students.size() % 14 * 60, "Student", 2));
             }
         }
-            if (arg.getKeyCode() == KeyEvent.VK_BACK_SPACE)
-                if (students.size() > 0)
-                    students.remove(students.size() - 1);
+        if (arg.getKeyCode() == KeyEvent.VK_BACK_SPACE)
+            if (students.size() > 0)
+                students.remove(students.size() - 1);
 
         repaint();
     }
