@@ -90,6 +90,11 @@ public class Runner extends JPanel implements ActionListener, KeyListener, Mouse
                     break;
                 }
         }
+
+        if (arg.getKeyCode() == KeyEvent.VK_0) {
+            //order the students alphabetically
+        }
+
         if (arg.getKeyCode() == KeyEvent.VK_SPACE) {
 
             Scanner sc = new Scanner(System.in);
