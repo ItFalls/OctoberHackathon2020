@@ -2,13 +2,13 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
-import java.util.Scanner;
 //master
 
 public class Runner extends JPanel implements ActionListener, KeyListener, MouseListener {
@@ -17,12 +17,20 @@ public class Runner extends JPanel implements ActionListener, KeyListener, Mouse
     // ==FIELDS==
     private final Font font = new Font("ComicSans", Font.PLAIN, 18);
     public static ArrayList<String> arr = new ArrayList<>();
-    ArrayList<Student> students;
-    File links = new File("links.txt");
-    PrintWriter out = new PrintWriter(links);
+    private static ArrayList<Student> students;
+    private static File file;
+    private static PrintWriter out;
 
-    public Runner() throws FileNotFoundException {
+    public Runner() throws IOException {
         students = new ArrayList<Student>();
+
+        String fileName = "links.txt";
+        arr = (ArrayList<String>) Files.readAllLines(Paths.get(fileName));
+
+        if(arr.size() == 0) {
+            file = new File("links.txt");
+            out = new PrintWriter(file);
+        }
     }
 
     //Paints everything
@@ -141,13 +149,13 @@ public class Runner extends JPanel implements ActionListener, KeyListener, Mouse
             writeValuesToFile();
         }
 
-        if (arg.getKeyCode() == KeyEvent.VK_S) {
-            Collections.shuffle(students);
-        }
-
         if (arg.getKeyCode() == KeyEvent.VK_C) {
             if (students.size() > 0)
                 arr.remove(arr.size()-1);
+        }
+
+        if (arg.getKeyCode() == KeyEvent.VK_S) {
+            Collections.shuffle(students);
         }
 
         if (arg.getKeyCode() == KeyEvent.VK_SPACE) {

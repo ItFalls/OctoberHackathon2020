@@ -1,13 +1,13 @@
 import javax.swing.*;
 import java.awt.*;
-import java.io.FileNotFoundException;
+import java.io.IOException;
 
 public class Main {
     public static final int DRAWING_WIDTH = 700; //Width of Window
     public static final int DRAWING_HEIGHT = 750; //Height of Window
     private static final Color background = new Color(255, 255, 255);
 
-    public static void main(String[] args) throws FileNotFoundException {
+    public static void main(String[] args) throws IOException {
         //Window
         JFrame f = new JFrame("Chart");
         f.setBounds(150, 0, DRAWING_WIDTH, DRAWING_HEIGHT);
