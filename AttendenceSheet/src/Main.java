@@ -10,20 +10,7 @@ public class Main {
     private static final Color background = new Color(255, 255, 255);
     public static ArrayList<String> arr = new ArrayList<>();
 
-    //Main Method
-<<<<<<< Updated upstream
-    public static void main(String[] args) {
-        //Runtime runtime = Runtime.getRuntime();
-        //System.out.print("What is your user folder's name?");
-        //String username = new Scanner(System.in).nextLine();
-        //String[] s = new String[]{"C:\\Users\\" + username + "\\AppData\\Local\\Google\\Chrome\\Application\\chrome.exe", "https://javaconceptoftheday.com/"};
 
-        //try {
-        //    runtime.exec(s);
-        //} catch (IOException e) {
-        //    e.printStackTrace();
-        //}
-=======
     public static void main(String[] args) throws FileNotFoundException {
         Runtime runtime = Runtime.getRuntime();
         for (String link : arr) {
@@ -34,7 +21,6 @@ public class Main {
                 e.printStackTrace();
             }
         }
->>>>>>> Stashed changes
 
         //Window
         JFrame f = new JFrame("Chart");
