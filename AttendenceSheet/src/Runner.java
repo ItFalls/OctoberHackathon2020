@@ -45,8 +45,9 @@ public class Runner extends JPanel implements ActionListener, KeyListener, Mouse
 
         if (arr.size() == 0) {
             file = new File("links.txt");
-            out = new PrintWriter(file);
+
         }
+        out = new PrintWriter("links.txt");
     }
 
     //Paints everything
