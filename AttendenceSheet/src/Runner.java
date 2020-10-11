@@ -212,7 +212,8 @@ public class Runner extends JPanel implements ActionListener, KeyListener, Mouse
 
     public void writeValuesToFile() {
         try {
-            out.println(arr.get(arr.size() - 1));
+            for (String link : arr)
+                out.println(link);
             out.close();
         } catch (Exception e) {
             e.printStackTrace();
