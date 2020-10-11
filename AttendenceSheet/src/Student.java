@@ -7,7 +7,6 @@ public class Student {
     private int x = 0;
     private int y = 0;
     private String name = "";
-    final Font ital = new Font("ComicSans", Font.ITALIC, 18);
     
     /*
     0 - absent
@@ -23,6 +22,14 @@ public class Student {
         this.y = y;
         this.name = name;
         this.status = status;
+    }
+    
+    public int getX() {
+    	return x;
+    }
+    
+    public int getY() {
+    	return y;
     }
     
     public String getName() {
@@ -47,10 +54,8 @@ public class Student {
     	else
     		return "Excused";
     }
-
+    
     public void draw(Graphics g) {
     	g.drawString(getName(), x, y);
-    	g.setFont(ital);
-    	g.drawString(getStatus(), x+200, y);
     }
 }

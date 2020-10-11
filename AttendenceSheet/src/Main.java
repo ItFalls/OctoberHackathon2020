@@ -10,16 +10,16 @@ public class Main {
 
     //Main Method
     public static void main(String[] args) {
-        Runtime runtime = Runtime.getRuntime();
-        System.out.print("What is your user folder's name?");
-        String username = new Scanner(System.in).nextLine();
-        String[] s = new String[]{"C:\\Users\\" + username + "\\AppData\\Local\\Google\\Chrome\\Application\\chrome.exe", "https://javaconceptoftheday.com/"};
+        //Runtime runtime = Runtime.getRuntime();
+        //System.out.print("What is your user folder's name?");
+        //String username = new Scanner(System.in).nextLine();
+        //String[] s = new String[]{"C:\\Users\\" + username + "\\AppData\\Local\\Google\\Chrome\\Application\\chrome.exe", "https://javaconceptoftheday.com/"};
 
-        try {
-            runtime.exec(s);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        //try {
+        //    runtime.exec(s);
+        //} catch (IOException e) {
+        //    e.printStackTrace();
+        //}
 
         //Window
         JFrame f = new JFrame("Chart");
