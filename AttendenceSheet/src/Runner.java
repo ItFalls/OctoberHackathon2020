@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
@@ -13,6 +14,7 @@ public class Runner extends JPanel implements ActionListener, KeyListener, Mouse
 
     // ==FIELDS==
     private final Font font = new Font("ComicSans", Font.PLAIN, 18);
+    public static ArrayList<String> arr = new ArrayList<>();
 
     ArrayList<Student> students;
 
@@ -128,6 +130,22 @@ public class Runner extends JPanel implements ActionListener, KeyListener, Mouse
                 }
 
             }
+        }
+
+        if(arg.getKeyCode() == KeyEvent.VK_Z){
+            Runtime runtime = Runtime.getRuntime();
+            for (String link : arr) {
+                String[] s = new String[]{System.getProperty("user.home") + "\\AppData\\Local\\Google\\Chrome\\Application\\chrome.exe", link};
+                try {
+                    runtime.exec(s);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+        if(arg.getKeyCode() == KeyEvent.VK_X) {
+            arr.add(JOptionPane.showInputDialog("Enter URL Link"));
         }
 
         if (arg.getKeyCode() == KeyEvent.VK_S) {
