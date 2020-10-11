@@ -1,8 +1,10 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
@@ -15,23 +17,12 @@ public class Runner extends JPanel implements ActionListener, KeyListener, Mouse
     // ==FIELDS==
     private final Font font = new Font("ComicSans", Font.PLAIN, 18);
     public static ArrayList<String> arr = new ArrayList<>();
-
     ArrayList<Student> students;
+    File links = new File("links.txt");
+    PrintWriter out = new PrintWriter(links);
 
     public Runner() throws FileNotFoundException {
         students = new ArrayList<Student>();
-
-        students.add(new Student(50, 50, "Bob Ross", 0));
-        students.add(new Student(50, 110, "John Smith", 1));
-        for (int x = 0; x < 20; x++) {
-            if (students.size() < 14) {
-                students.add(new Student(50, 50 + students.size() * 60, "student", 0));
-            } else if (students.size() < 28) {
-                students.add(new Student(560, 50 + students.size() % 14 * 60, "Student", 1));
-            } else if (students.size() < 42) {
-                students.add(new Student(1070, 50 + students.size() % 14 * 60, "Student", 2));
-            }
-        }
     }
 
     //Paints everything
@@ -41,15 +32,15 @@ public class Runner extends JPanel implements ActionListener, KeyListener, Mouse
         g.setFont(font);
 
         for (int i = 0; i < students.size(); i++) {
-            if (i < 14) {
-                students.get(i).setX(50);
-                students.get(i).setY(50 + i * 60);
-            } else if (i < 28) {
-                students.get(i).setX(560);
-                students.get(i).setY(50 + i % 14 * 60);
-            } else if (i < 42) {
-                students.get(i).setX(1070);
-                students.get(i).setY(50 + i % 14 * 60);
+            if (i < 12) {
+                students.get(i).setX(15);
+                students.get(i).setY(20 + i * 65);
+            } else if (i < 24) {
+                students.get(i).setX(525);
+                students.get(i).setY(20 + i % 12 * 65);
+            } else if (i < 36) {
+                students.get(i).setX(1035);
+                students.get(i).setY(20 + i % 12 * 65);
             }
 
             students.get(i).draw(g);
@@ -131,7 +122,7 @@ public class Runner extends JPanel implements ActionListener, KeyListener, Mouse
 
             }
         }
-
+        
         if(arg.getKeyCode() == KeyEvent.VK_Z){
             Runtime runtime = Runtime.getRuntime();
             for (String link : arr) {
@@ -145,7 +136,9 @@ public class Runner extends JPanel implements ActionListener, KeyListener, Mouse
         }
 
         if(arg.getKeyCode() == KeyEvent.VK_X) {
-            arr.add(JOptionPane.showInputDialog("Enter URL Link"));
+        	String l = JOptionPane.showInputDialog("Enter URL");
+            arr.add(l);
+            writeValuesToFile();
         }
 
         if (arg.getKeyCode() == KeyEvent.VK_S) {
@@ -158,15 +151,14 @@ public class Runner extends JPanel implements ActionListener, KeyListener, Mouse
         }
 
         if (arg.getKeyCode() == KeyEvent.VK_SPACE) {
-            Scanner sc = new Scanner(System.in);
             String name = JOptionPane.showInputDialog("Enter student name");
 
-            if (students.size() < 14) {
-                students.add(new Student(50, 50 + students.size() * 60, name, 0));
-            } else if (students.size() < 28) {
-                students.add(new Student(560, 50 + students.size() % 14 * 60, name, 1));
-            } else if (students.size() < 42) {
-                students.add(new Student(1070, 50 + students.size() % 14 * 60, name, 2));
+            if (students.size() < 12) {
+                students.add(new Student(15, 20 + students.size() * 65, name, 0));
+            } else if (students.size() < 24) {
+                students.add(new Student(525, 20 + students.size() % 12 * 65, name, 0));
+            } else if (students.size() < 36) {
+                students.add(new Student(1035, 20 + students.size() % 12 * 65, name, 0));
             }
         }
         if (arg.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
@@ -186,7 +178,17 @@ public class Runner extends JPanel implements ActionListener, KeyListener, Mouse
         }
         return null;
     }
-
+    
+    public void writeValuesToFile() {
+        try {
+            out.println(arr.get(arr.size()-1));
+            out.close();
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
     @Override
     public void keyReleased(KeyEvent arg) {
     }
