@@ -115,22 +115,32 @@ public class Runner extends JPanel implements ActionListener, KeyListener, Mouse
 
         if (arg.getKeyCode() == KeyEvent.VK_SPACE) {
             Scanner sc = new Scanner(System.in);
+            String name = JOptionPane.showInputDialog("Enter student name");
 
             if (students.size() < 14) {
-                System.out.print("Enter Student's Name: ");
-                String name = sc.nextLine();
                 students.add(new Student(50, 50 + students.size() * 60, name, 0));
             } else if (students.size() < 28) {
-                students.add(new Student(560, 50 + students.size() % 14 * 60, "Student", 1));
+                students.add(new Student(560, 50 + students.size() % 14 * 60, name, 1));
             } else if (students.size() < 42) {
-                students.add(new Student(1070, 50 + students.size() % 14 * 60, "Student", 2));
+                students.add(new Student(1070, 50 + students.size() % 14 * 60, name, 2));
             }
         }
-        if (arg.getKeyCode() == KeyEvent.VK_BACK_SPACE)
+        if (arg.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
             if (students.size() > 0)
-                students.remove(students.size() - 1);
+                students.remove(findStudentByName(JOptionPane.showInputDialog("Enter student name")));
+        }
+
 
         repaint();
+    }
+
+    public Student findStudentByName(String name) {
+        for(Student studentObj : students) {
+            if(studentObj.getName().replaceAll(" ", "").equalsIgnoreCase(name)) {
+                return studentObj;
+            }
+        }
+        return null;
     }
 
     @Override
