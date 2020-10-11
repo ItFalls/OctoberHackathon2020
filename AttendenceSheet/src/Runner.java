@@ -152,6 +152,11 @@ public class Runner extends JPanel implements ActionListener, KeyListener, Mouse
             Collections.shuffle(students);
         }
 
+        if (arg.getKeyCode() == KeyEvent.VK_C) {
+            if (students.size() > 0)
+                arr.remove(arr.size()-1);
+        }
+
         if (arg.getKeyCode() == KeyEvent.VK_SPACE) {
             Scanner sc = new Scanner(System.in);
             String name = JOptionPane.showInputDialog("Enter student name");
